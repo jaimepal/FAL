@@ -43,20 +43,24 @@ const int MAXN = 10;
 	
 */
 
-bool modulo(int coleccion[], int n, int k,int i,int& veces,int suma, bool usados[]) {
+bool modulo(int coleccion[], int n, int k,int i,int& veces,int& suma, bool usados[]) {
 	/* A IMPLEMENTAR */
 	if(i<n){
 		bool encontrado = false;
 		int pos = 0;
 		while(!encontrado && pos < n){
 			if(usados[pos]==false){
-				usados[pos]= true;
+				usados[pos]= true;//?¿
+				cout << "hola cabron   " << endl;
 				if(coleccion[pos]+ suma == k){
+					cout << "suma   " << suma << endl;
 					veces++;
 					usados[pos]=false;
+					suma = 0;
 					return true;
 
 				}else if(coleccion[pos]+ suma < k){
+					suma += coleccion[pos];
 					encontrado = modulo(coleccion,n,k,i+1,veces,suma,usados);
 				}else{// la suma de ese elemento es mayor, no vale
 					//pos++;
@@ -69,11 +73,6 @@ bool modulo(int coleccion[], int n, int k,int i,int& veces,int suma, bool usados
 	}else{
 		return true;
 	}
-
-
-
-
-
 }
 
 	
@@ -97,10 +96,10 @@ bool ejecuta_caso() {
 	int suma =0;
 	int veces =0;
 
-	for(int i = 0; i <=n; i++){
+	for(int i = 0; i <n; i++){
 		marcadores[i]=false;
 	}
-	marcadores[0]=true;
+	//marcadores[0]=true;
 	
 	if (n != 0) {
 		modulo(coleccion,n,k,i,veces ,suma, marcadores);
