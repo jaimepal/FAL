@@ -43,36 +43,31 @@ const int MAXN = 10;
 	
 */
 
-bool modulo(int coleccion[], int n, int k,int i,int& veces,int& suma, bool usados[]) {
+void modulo(int coleccion[], int n, int k,int a,int& veces,int& suma) {
 	/* A IMPLEMENTAR */
-	if(i<n){
-		bool encontrado = false;
-		int pos = 0;
-		while(!encontrado && pos < n){
-			if(usados[pos]==false){
-				usados[pos]= true;//?¿
-				//cout << "hola cabron   " << endl;
-				if(coleccion[i]+ suma == k){
-					//cout << "suma   " << suma << endl;
-					veces++;
-					usados[pos]=false;
-					suma = 0;
-			 		//return true;
 
-				}else if(coleccion[pos]+ suma < k){
-					suma += coleccion[pos];
-					encontrado = modulo(coleccion,n,k,i+1,veces,suma,usados);
-				}else{// la suma de ese elemento es mayor, no vale
-					//pos++;
-				}
-			}
-			pos++;
-
-		}
-		i++;
-	}else{
-		return true;
-	}
+        int pos=a;
+        bool haysol = false;
+        
+        while(pos<n && !haysol){
+            if(coleccion[pos]+ suma == k){
+                veces++;
+                pos++;
+                cout << "te reviento" << endl;
+                haysol = true;
+            }else if (coleccion[pos+1]+ suma < k){
+                
+                if(pos+1 < n){
+                    suma = suma + coleccion[pos];
+                    modulo(coleccion,n,k,pos+1,veces,suma);
+                    //suma-=coleccion[pos];
+                    cout << "o mas " << endl;
+                }
+                cout << "o menos " << endl;
+            }
+               
+            cout << "q pasa " << endl;
+        }
 }
 
 	
@@ -92,17 +87,15 @@ bool ejecuta_caso() {
 	int k;
 	lee_datos(n,coleccion,k);
 	int i = 0;
-	bool marcadores[n];
 	int suma =0;
-	int veces =0;
-
-	for(int i = 0; i <n; i++){
-		marcadores[i]=false;
-	}
-	//marcadores[0]=true;
+    int veces=0;
 	
 	if (n != 0) {
-		modulo(coleccion,n,k,i,veces ,suma, marcadores);
+        for(int a=0;a<n;a++){
+            suma= coleccion[a];
+            modulo(coleccion,n,k,a,veces,suma);
+        }
+		
 	  cout << veces << endl;
       return true;	  
 	}
