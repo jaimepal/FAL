@@ -40,8 +40,30 @@ a partir de los devueltos por la generalización.
 
 */
 
+int cuantosAlternadosMenores(t_num n) {
+	
+	
+
+
+
+
+}
+
 t_num num_alternados(t_num n) {
 	// PUNTO ENTRADA AL ALGORITMO
+
+	if (n <= 9) {
+		return n;
+
+	}
+	else {
+
+		cuantosAlternadosMenores(n);
+
+
+	}
+
+
 }
 
 /*
