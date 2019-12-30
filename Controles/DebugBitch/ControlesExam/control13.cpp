@@ -91,7 +91,8 @@ bool procesa_caso() {
 		return false;
 	}
 }
-
+/*
 int main() {
 	while (procesa_caso());
 }
+*/
